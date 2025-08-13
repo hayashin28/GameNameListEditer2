@@ -28,7 +28,10 @@ class XMLParser:
                 for great in gran:
                     if great.tag != 'file':
                         continue
-                    crc32:str = great.get('crc32')    # type: ignore
-                    xmlDic[crc32.upper()] = atrb
+                    if great.tag == 'crc32':
+                        crc32:str = great.get('crc32')    # type: ignore
+                    elif great.tag == 'desc':
+                        crc32 = crc32+','+'desc'    
+                    xmlDic[crc32.lower()] = atrb
                         
         return xmlDic

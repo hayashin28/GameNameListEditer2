@@ -38,7 +38,6 @@ class XMLOutput:
                 grand = ET.SubElement(child,'lastplayed')
                 grand.text = '20250524T200507'
 
-
         # インデントを付けて保存
         dir_path = os.path.dirname(XmlPath)
         if dir_path and not os.path.exists(dir_path):
@@ -48,3 +47,10 @@ class XMLOutput:
         with open(output_path, 'w', encoding='utf-8') as f:
             doc.writexml(f, encoding='utf-8', newl='\n', indent='', addindent='  ')
         # print('XMLファイルを出力しました。')
+        
+        # 再度インデントを付けて保存
+        doc = minidom.parseString(ET.tostring(root, 'utf-8'))
+        output_path = os.path.join(dir_path, 'gamelist2.xml') if dir_path else XmlPath
+        with open(output_path, 'w', encoding='utf-8') as f:
+            doc.writexml(f, encoding='utf-8', newl='\n', indent='', addindent='  ')
+        # print('XMLファイルを再度出力しました。')

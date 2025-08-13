@@ -2,10 +2,11 @@ import json
 from typing import Dict
 
 class GameBean:
-    def __init__(self, name: str, genre: str, platform: str):
+    def __init__(self, name: str, genre: str, platform: str, desc: str):
         self.name = name
         self.genre = genre
         self.platform = platform
+        self.desc = desc
 
     def to_dict(self) -> Dict[str, str]:
         return {
